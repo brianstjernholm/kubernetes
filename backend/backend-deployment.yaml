@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+        service: backend-deployment
+    spec:
+      containers:
+      - name: testback
+        image: brianstjernholm/backend:latest
+        env:
+        - name: DBHOST
+          value: 10.101.183.170 
+        ports:
+        - containerPort: 8888
