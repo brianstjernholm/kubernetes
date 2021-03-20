@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
+  namespace: gruppe1
   labels:
     app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -16,9 +17,9 @@ spec:
     spec:
       containers:
       - name: testfront
-        image: 
+        image: brianstjernholm/frontend:2 
         # env:
         # - name: DBHOST
         #   value: 10.101.183.170
         ports:
-        - containerPort: 80
+        - containerPort: 8888

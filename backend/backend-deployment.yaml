@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
+  namespace: gruppe1
   labels:
     app: backend
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: backend
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
       - name: testback
-        image: brianstjernholm/backend:4
+        image: brianstjernholm/backend:7
         # env:
         # - name: DBHOST
         #   value: 10.101.183.170

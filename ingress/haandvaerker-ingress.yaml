@@ -2,11 +2,15 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: haandvaerker-ingress
+  namespace: gruppe1
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-    - host: kubia.example.com
+    - host: www.gruppe1.haandvaerker.com
       http:
         paths:
           - path: /frontend
@@ -16,4 +20,4 @@ spec:
           - path: /backend
             backend:
               serviceName: backend-service
-              servicePort: 80
+              servicePort: 80 
