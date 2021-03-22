@@ -17,23 +17,27 @@ spec:
     spec:
       containers:
       - name: mysqldb
-        image: mysql:8.0.0
+        image: mysql:8.0.0 #5.6
+        args: ["--ignore-db-dir=lost+found"] #, "-e MYSQL_DATABASE=mysqldb"
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secret
               key: mysql-root-password
+        #- name: DBHOST
+        #  value: mysql-service.gruppe1.svc   
         ports:
         - containerPort: 3306
+          protocol: TCP
           name: mysql
         resources:
           limits:
             cpu: 10m
-            memory: 0.2Gi
+            memory: 0.5Gi
           requests:
             cpu: 10m
-            memory: 0.2Gi
+            memory: 0.5Gi
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql

@@ -17,7 +17,13 @@ spec:
     spec:
       containers:
       - name: testback
-        image: brianstjernholm/backend:7
+        image: brianstjernholm/backend:9
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: mysql-root-password
         # env:
         # - name: DBHOST
         #   value: 10.101.183.170
